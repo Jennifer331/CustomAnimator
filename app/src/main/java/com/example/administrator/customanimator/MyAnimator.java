@@ -27,7 +27,7 @@ public class MyAnimator {
 
     public boolean hasNextFrame(ImageArea object){
         Log.v(TAG,++i + "");
-        boolean result = false;
+        boolean hasNextFrame = false;
         if(Math.abs(object.getLeft() - mEndX) > ERROR
                 || Math.abs(object.getTop() - mEndY) > ERROR
                 || Math.abs(object.getScale() - mEndScale) > ERROR
@@ -35,7 +35,7 @@ public class MyAnimator {
                 || Math.abs(object.getSrcBound().right - mEndSrcBound.right) > ERROR
                 || Math.abs(object.getSrcBound().top - mEndSrcBound.top) > ERROR
                 || Math.abs(object.getSrcBound().bottom - mEndSrcBound.bottom) > ERROR){
-            result = true;
+            hasNextFrame = true;
             object.setLeft(object.getLeft() + (mEndX - object.getLeft()) * DEFAULT_FACTOR);
             object.setTop(object.getTop() + (mEndY - object.getTop()) * DEFAULT_FACTOR);
             object.setScale(object.getScale() + (mEndScale - object.getScale()) * DEFAULT_FACTOR);
@@ -48,6 +48,9 @@ public class MyAnimator {
                 object.setSrcBound(new Rect(left, top, right, bottom));
             }
         }
-        return result;
+        if(!hasNextFrame){
+
+        }
+        return hasNextFrame;
     }
 }
